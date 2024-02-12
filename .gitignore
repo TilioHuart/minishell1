@@ -1,0 +1,5 @@
+my_sh
+*.o
+*.a
+coding-style-reports.log
+.idea
