@@ -5,16 +5,16 @@
 ## make
 ##
 
-SRC	=	src/main.c
-SRC	+=	src/minishell.c
-SRC	+=	src/display_functions.c
-SRC	+=	src/recup_function.c
-SRC	+=	src/builtin.c
-SRC	+=	src/cd_function.c
-SRC	+=	src/env_function.c
-SRC	+=	src/setenv_function.c
-SRC	+=	src/unsetenv_function.c
-SRC	+=	src/washing_machine.c
+SRC	=	src/main_functions/main.c
+SRC	+=	src/main_functions/minishell.c
+SRC	+=	src/display/display_functions.c
+SRC	+=	src/main_functions/recup_function.c
+SRC	+=	src/builtins/builtin.c
+SRC	+=	src/builtins/cd_function.c
+SRC	+=	src/builtins/environment/env_function.c
+SRC	+=	src/builtins/environment/setenv_function.c
+SRC	+=	src/builtins/environment/unsetenv_function.c
+SRC	+=	src/memory_management/washing_machine.c
 
 OBJ = $(SRC:.c=.o)
 
