@@ -14,6 +14,7 @@ SRC	+=	src/cd_function.c
 SRC	+=	src/env_function.c
 SRC	+=	src/setenv_function.c
 SRC	+=	src/unsetenv_function.c
+SRC	+=	src/washing_machine.c
 
 OBJ = $(SRC:.c=.o)
 

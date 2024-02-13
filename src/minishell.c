@@ -14,24 +14,40 @@
 #include "recup_function.h"
 #include "minishell.h"
 #include "builtin.h"
+#include "washing_machine.h"
+
+static int call_function(char **arr, builtin_t *builtin)
+{
+    display_prompt();
+    arr = recup_function();
+    if (arr == NULL || arr[0] == NULL) {
+        washing_machine(builtin);
+        return -1;
+    }
+    if (my_strcmp(arr[0], "exit") == 0) {
+        washing_array(arr);
+        washing_machine(builtin);
+        return 1;
+    }
+    loop_builtin(builtin, arr);
+    washing_array(arr);
+    return SUCCESS;
+}
 
 static int main_loop(void)
 {
     char **arr = NULL;
     builtin_t *builtin = malloc(sizeof(builtin_t) * 5);
+    int loop = 0;
 
+    init_builtin(builtin);
     while (1) {
-        display_prompt();
-        arr = recup_function();
-        if (arr == NULL || arr[0] == NULL) {
-            free(builtin);
+        loop = call_function(arr, builtin);
+        if (loop == -1)
             return -1;
-        }
-        if (my_strcmp(arr[0], "exit") == 0)
+        if (loop == 1)
             break;
-        loop_builtin(builtin, arr);
     }
-    free(builtin);
     return SUCCESS;
 }
 

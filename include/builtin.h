@@ -12,5 +12,6 @@ int cd_function(void);
 int env_function(void);
 int setenv_function(void);
 int unsetenv_function(void);
+int init_builtin(builtin_t *builtin);
 
 #endif

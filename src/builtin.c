@@ -13,7 +13,7 @@
 #include <string.h>
 #include <stdio.h>
 
-static int init_builtin(builtin_t *builtin)
+int init_builtin(builtin_t *builtin)
 {
     builtin[0].function = my_strdup("cd");
     builtin[0].pftc = &cd_function;
@@ -41,7 +41,6 @@ int loop_builtin(builtin_t *builtin, char **arr)
 {
     if (builtin == NULL || arr == NULL || arr[0] == NULL)
         return FAILURE;
-    init_builtin(builtin);
     find_builtin(builtin, arr);
     return SUCCESS;
 }

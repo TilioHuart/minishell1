@@ -7,6 +7,7 @@
 
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "my.h"
 #include "my_macros.h"
 
@@ -38,5 +39,6 @@ char **recup_function(void)
             (buff[i] == ' ' && buff[i + 1] != '\0'))
             count += 1;
     arr = my_str_to_word_array(buff);
+    free(buff);
     return arr;
 }
