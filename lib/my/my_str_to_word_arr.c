@@ -58,7 +58,7 @@ static char **create_arr(char const *str)
         if (is_not_separator(str[i]) == 1)
             count += 1;
     arr = malloc(sizeof(char *) * (count + 2));
-    arr[count + 1] = NULL;
+    arr[count + 2] = NULL;
     for (size_t i = 0; i < (count + 1); i++) {
         for (; str[y] != ' ' && str[y] != '\0'; y++)
             find_len(str, &len, &y);
