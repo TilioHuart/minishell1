@@ -9,6 +9,8 @@ SRC = 	my_strlen.c
 SRC	+=	my_putstr.c
 SRC	+=	my_str_to_word_arr.c
 SRC	+=	my_putnbr.c
+SRC	+=	my_strdup.c
+SRC	+=	my_strcmp.c
 
 CPPFLAGS	=	-I.
 

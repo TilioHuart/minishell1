@@ -7,6 +7,8 @@
 
 SRC	=	src/main.c
 SRC	+=	src/minishell.c
+SRC	+=	src/display_functions.c
+SRC	+=	src/recup_function.c
 
 OBJ = $(SRC:.c=.o)
 
