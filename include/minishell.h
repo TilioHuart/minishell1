@@ -10,4 +10,11 @@
 
 int minishell(char **env);
 
+typedef struct builtin {
+    char *function;
+    int (*pftc) (void);
+} builtin_t;
+
+int loop_builtin(builtin_t *builtin, char **arr);
+
 #endif

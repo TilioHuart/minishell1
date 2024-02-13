@@ -9,6 +9,11 @@ SRC	=	src/main.c
 SRC	+=	src/minishell.c
 SRC	+=	src/display_functions.c
 SRC	+=	src/recup_function.c
+SRC	+=	src/builtin.c
+SRC	+=	src/cd_function.c
+SRC	+=	src/env_function.c
+SRC	+=	src/setenv_function.c
+SRC	+=	src/unsetenv_function.c
 
 OBJ = $(SRC:.c=.o)
 

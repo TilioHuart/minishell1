@@ -7,7 +7,7 @@
 
 #include <unistd.h>
 
-ssize_t my_putstr(char const *str)
+int my_putstr(char const *str)
 {
     int i = 0;
     char c;

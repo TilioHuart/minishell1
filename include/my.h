@@ -9,7 +9,7 @@
     #define MY_H
 
 int my_strlen(char const *str);
-ssize_t my_putstr(char const *str);
+int my_putstr(char const *str);
 char **my_str_to_word_array(char const *str);
 int my_putnbr(int n);
 char *my_strdup(char const *src);
