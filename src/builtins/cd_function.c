@@ -6,9 +6,10 @@
 */
 
 #include "my_macros.h"
+#include "environment.h"
 #include <unistd.h>
 
-int cd_function(void)
+int cd_function(UNUSED environment_t *environment)
 {
     write(1, "cd\n", 3);
     return SUCCESS;

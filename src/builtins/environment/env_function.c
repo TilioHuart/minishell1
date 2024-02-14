@@ -6,10 +6,16 @@
 */
 
 #include "my_macros.h"
+#include "my.h"
+#include "environment.h"
 #include <unistd.h>
 
-int env_function(void)
+int env_function(environment_t *environment)
 {
-    write(1, "env\n", 4);
+    while (environment != NULL) {
+        my_putstr(environment->part_of_env);
+        write(1, "\n", 1);
+        environment = environment->next;
+    }
     return SUCCESS;
 }

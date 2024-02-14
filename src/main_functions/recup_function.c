@@ -25,7 +25,6 @@ char **recup_function(void)
 {
     char *buff = NULL;
     size_t len = 0;
-    char *token = NULL;
     char **arr = NULL;
     int count = 0;
 

@@ -8,10 +8,10 @@
 #ifndef BUILTIN_H_
     #define BUILTIN_H_
 
-int cd_function(void);
-int env_function(void);
-int setenv_function(void);
-int unsetenv_function(void);
+int cd_function(UNUSED environment_t *environment);
+int env_function(environment_t *environment);
+int setenv_function(UNUSED environment_t *environment);
+int unsetenv_function(UNUSED environment_t *environment);
 int init_builtin(builtin_t *builtin);
 
 #endif
