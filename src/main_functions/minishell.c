@@ -6,6 +6,7 @@
 */
 
 #include <string.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "my_macros.h"
@@ -15,8 +16,11 @@
 #include "minishell.h"
 #include "builtin.h"
 #include "washing_machine.h"
+#include "environment.h"
+#include "use_functions.h"
 
-static int call_function(char **arr, builtin_t *builtin)
+static
+int call_function(char **arr, builtin_t *builtin, environment_t *environment)
 {
     display_prompt();
     arr = recup_function();
@@ -29,12 +33,13 @@ static int call_function(char **arr, builtin_t *builtin)
         washing_machine(builtin);
         return 1;
     }
-    loop_builtin(builtin, arr);
+    if (loop_builtin(builtin, arr, environment) == 0)
+        use_function(arr, environment);
     washing_array(arr);
     return SUCCESS;
 }
 
-static int main_loop(void)
+static int main_loop(environment_t *environment)
 {
     char **arr = NULL;
     builtin_t *builtin = malloc(sizeof(builtin_t) * 5);
@@ -42,7 +47,7 @@ static int main_loop(void)
 
     init_builtin(builtin);
     while (1) {
-        loop = call_function(arr, builtin);
+        loop = call_function(arr, builtin, environment);
         if (loop == -1)
             return -1;
         if (loop == 1)
@@ -53,7 +58,10 @@ static int main_loop(void)
 
 int minishell(char **env)
 {
-    if (main_loop() == -1)
+    environment_t *environment = NULL;
+
+    environment = copy_env(env);
+    if (main_loop(environment) == -1)
         return FAILURE_EPITECH;
     return SUCCESS;
 }

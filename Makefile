@@ -15,6 +15,8 @@ SRC	+=	src/builtins/environment/env_function.c
 SRC	+=	src/builtins/environment/setenv_function.c
 SRC	+=	src/builtins/environment/unsetenv_function.c
 SRC	+=	src/memory_management/washing_machine.c
+SRC	+=	src/environment/copy_env.c
+SRC	+=	src/path_functions/use_functions.c
 
 OBJ = $(SRC:.c=.o)
 
