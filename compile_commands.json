@@ -1,0 +1,308 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/main_functions/main.o",
+      "src/main_functions/main.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/main_functions/main.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/main_functions/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/main_functions/minishell.o",
+      "src/main_functions/minishell.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/main_functions/minishell.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/main_functions/minishell.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/display/display_functions.o",
+      "src/display/display_functions.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/display/display_functions.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/display/display_functions.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/main_functions/recup_function.o",
+      "src/main_functions/recup_function.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/main_functions/recup_function.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/main_functions/recup_function.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/builtins/builtin.o",
+      "src/builtins/builtin.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/builtin.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/builtin.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/builtins/cd_function.o",
+      "src/builtins/cd_function.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/cd_function.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/cd_function.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/builtins/environment/env_function.o",
+      "src/builtins/environment/env_function.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/environment/env_function.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/environment/env_function.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/builtins/environment/setenv_function.o",
+      "src/builtins/environment/setenv_function.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/environment/setenv_function.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/environment/setenv_function.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/builtins/environment/unsetenv_function.o",
+      "src/builtins/environment/unsetenv_function.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/environment/unsetenv_function.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/builtins/environment/unsetenv_function.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/memory_management/washing_machine.o",
+      "src/memory_management/washing_machine.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/memory_management/washing_machine.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/memory_management/washing_machine.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/environment/copy_env.o",
+      "src/environment/copy_env.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/environment/copy_env.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/environment/copy_env.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-g",
+      "-I",
+      "include",
+      "-W",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-c",
+      "-o",
+      "src/path_functions/use_functions.o",
+      "src/path_functions/use_functions.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/src/path_functions/use_functions.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/src/path_functions/use_functions.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-I.",
+      "-c",
+      "-o",
+      "my_strlen.o",
+      "my_strlen.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1/lib/my",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_strlen.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_strlen.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-I.",
+      "-c",
+      "-o",
+      "my_putstr.o",
+      "my_putstr.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1/lib/my",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_putstr.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_putstr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-I.",
+      "-c",
+      "-o",
+      "my_str_to_word_arr.o",
+      "my_str_to_word_arr.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1/lib/my",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_str_to_word_arr.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_str_to_word_arr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-I.",
+      "-c",
+      "-o",
+      "my_putnbr.o",
+      "my_putnbr.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1/lib/my",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_putnbr.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_putnbr.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-I.",
+      "-c",
+      "-o",
+      "my_strdup.o",
+      "my_strdup.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1/lib/my",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_strdup.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_strdup.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/cc",
+      "-I.",
+      "-c",
+      "-o",
+      "my_strcmp.o",
+      "my_strcmp.c"
+    ],
+    "directory": "/home/tilio/projects/PSU/S2/minishell1/lib/my",
+    "file": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_strcmp.c",
+    "output": "/home/tilio/projects/PSU/S2/minishell1/lib/my/my_strcmp.o"
+  }
+]

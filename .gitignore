@@ -3,3 +3,5 @@ my_sh
 *.a
 coding-style-reports.log
 .idea
+compile_commands.json
+.cache/
