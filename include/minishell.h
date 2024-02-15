@@ -13,7 +13,7 @@ int minishell(char **env);
 
 typedef struct builtin {
     char *function;
-    int (*pftc) (environment_t *environment);
+    int (*pftc) (char **arr, environment_t *environment);
 } builtin_t;
 
 int loop_builtin(builtin_t *builtin, char **arr, environment_t *environment);

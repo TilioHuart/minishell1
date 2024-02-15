@@ -10,7 +10,7 @@
 #include "environment.h"
 #include <unistd.h>
 
-int env_function(environment_t *environment)
+int env_function(UNUSED char **arr, environment_t *environment)
 {
     while (environment != NULL) {
         my_putstr(environment->part_of_env);
