@@ -20,7 +20,7 @@ SRC	+=	src/path_functions/use_functions.c
 
 OBJ = $(SRC:.c=.o)
 
-NAME = my_sh
+NAME = mysh
 
 CC = gcc -g
 
