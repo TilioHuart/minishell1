@@ -9,7 +9,8 @@
     #define ENVIRONMENT_H_
 
 typedef struct environment {
-    char *part_of_env;
+    char *key;
+    char *value;
     struct environment *next;
 } environment_t;
 

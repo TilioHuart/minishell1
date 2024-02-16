@@ -9,29 +9,102 @@
 #include "environment.h"
 #include "my.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+static ssize_t strlen_key(char *part_of_env)
+{
+    ssize_t i = 0;
+
+    if (part_of_env == NULL)
+        return -1;
+    for (; part_of_env[i] != '='; i++);
+    return i;
+}
+
+static ssize_t strlen_value(char *part_of_env)
+{
+    ssize_t i = strlen_key(part_of_env);
+    ssize_t count = 0;
+
+    if (part_of_env == NULL)
+        return -1;
+    for (; part_of_env[i] != '\0'; i++)
+        count += 1;
+    return count;
+}
+
+static char *assign_key(char const *part_of_env, char *key, size_t *i)
+{
+    if (part_of_env == NULL || key == NULL)
+        return NULL;
+    for (; part_of_env[*i] != '='; *i += 1) {
+        key[*i] = part_of_env[*i];
+    }
+    key[*i] = '\0';
+    return key;
+}
+
+static char *assign_value(char const *part_of_env, char *key, size_t *i)
+{
+    size_t a = 0;
+
+    if (part_of_env == NULL || key == NULL)
+        return NULL;
+    for (; part_of_env[*i] != '\0'; *i += 1) {
+        key[a] = part_of_env[*i];
+        a += 1;
+    }
+    key[a] = '\0';
+    return key;
+}
 
 static environment_t *create_list_env(char *part_of_env)
 {
     environment_t *environment;
+    char *key = NULL;
+    char *value = NULL;
+    size_t i = 0;
 
     environment = malloc(sizeof(environment_t));
-    environment->part_of_env = part_of_env;
+    if (environment == NULL)
+        return NULL;
+    key = malloc(sizeof(char) * (strlen_key(part_of_env) + 1));
+    key = assign_key(part_of_env, key, &i);
+    value = malloc(sizeof(char) * (strlen_value(part_of_env) + 1));
+    i += 1;
+    value = assign_value(part_of_env, value, &i);
+    environment->key = key;
+    environment->value = value;
     environment->next = NULL;
     return environment;
+}
+
+static void adding_values_to_list(environment_t *tmp, char *key, char *value)
+{
+    tmp->key = key;
+    tmp->value = value;
+    tmp->next = NULL;
 }
 
 static int adding_elem_to_list(environment_t *environment, char *part_of_env)
 {
     environment_t *head = environment;
     environment_t *tmp = malloc(sizeof(environment_t));
+    char *key = NULL;
+    char *value = NULL;
+    size_t i = 0;
 
     if (tmp == NULL || part_of_env == NULL)
         return FAILURE;
     while (environment->next != NULL)
         environment = environment->next;
     environment->next = tmp;
-    tmp->part_of_env = my_strdup(part_of_env);
-    tmp->next = NULL;
+    key = malloc(sizeof(char) * (strlen_key(part_of_env) + 1));
+    key = assign_key(part_of_env, key, &i);
+    value = malloc(sizeof(char) * (strlen_value(part_of_env) + 1));
+    i += 1;
+    value = assign_value(part_of_env, value, &i);
+    adding_values_to_list(tmp, key, value);
     environment = head;
     return SUCCESS;
 }

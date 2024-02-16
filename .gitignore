@@ -1,7 +1,5 @@
-mysh
+my_sh
 *.o
 *.a
 coding-style-reports.log
 .idea
-compile_commands.json
-.cache/

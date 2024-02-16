@@ -12,43 +12,84 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+static ssize_t strlen_key(char *part_of_env)
+{
+    ssize_t i = 0;
+
+    if (part_of_env == NULL)
+        return -1;
+    for (; part_of_env[i] != '='; i++);
+    return i;
+}
+
+static ssize_t strlen_value(char *part_of_env)
+{
+    ssize_t i = strlen_key(part_of_env);
+    ssize_t count = 0;
+
+    if (part_of_env == NULL)
+        return -1;
+    for (; part_of_env[i] != '\0'; i++)
+        count += 1;
+    return count;
+}
+
+static char *assign_key(char const *part_of_env, char *key, size_t *i)
+{
+    if (part_of_env == NULL || key == NULL)
+        return NULL;
+    for (; part_of_env[*i] != '='; *i += 1) {
+        key[*i] = part_of_env[*i];
+    }
+    key[*i] = '\0';
+    return key;
+}
+
+static char *assign_value(char const *part_of_env, char *key, size_t *i)
+{
+    size_t a = 0;
+
+    if (part_of_env == NULL || key == NULL)
+        return NULL;
+    for (; part_of_env[*i] != '\0'; *i += 1) {
+        key[a] = part_of_env[*i];
+        a += 1;
+    }
+    key[a] = '\0';
+    return key;
+}
+
 static
-int adding_elem_with_setenv(environment_t *environment, char *part_of_env)
+void assign_values_to_list(environment_t *environment,
+    char *const *arr, environment_t *tmp)
+{
+    environment->next = tmp;
+    tmp->key = my_strdup(arr[1]);
+    tmp->value = my_strdup(arr[2]);
+}
+
+static
+int adding_elem_with_setenv(environment_t *environment, char **arr)
 {
     environment_t *head = environment;
     environment_t *tmp = malloc(sizeof(environment_t));
-
-    if (tmp == NULL || part_of_env == NULL)
-        return FAILURE;
-    while (environment->next != NULL)
-        environment = environment->next;
-    environment->next = tmp;
-    tmp->part_of_env = my_strdup(part_of_env);
-    tmp->next = NULL;
-    environment = head;
-    return SUCCESS;
-}
-
-static int concatenate_str(char **arr, char *str, size_t len1, size_t len2)
-{
+    environment_t *tmp2 = NULL;
+    char *key = NULL;
+    char *value = NULL;
     size_t i = 0;
-    size_t a = 0;
 
-    if (arr == NULL || str == NULL)
+    if (tmp == NULL || arr == NULL)
         return FAILURE;
-    for (; arr[1][i] != '\0'; i++)
-        str[i] = arr[1][i];
-    str[i] = '=';
-    i += 1;
-    if (arr[2] == NULL) {
-        str[i] = '\0';
-        return SUCCESS;
+    while (environment->next != NULL) {
+        if (my_strcmp(environment->next->key, arr[1]) == 0) {
+            tmp2 = environment->next->next;
+            break;
+        }
+        environment = environment->next;
     }
-    for (; arr[2][a] != '\0'; a += 1) {
-        str[i] = arr[2][a];
-        i++;
-    }
-    str[i + 1] = '\0';
+    assign_values_to_list(environment, arr, tmp);
+    tmp->next = tmp2;
+    environment = head;
     return SUCCESS;
 }
 
@@ -62,10 +103,6 @@ int setenv_function(char **arr, UNUSED environment_t *environment)
         return FAILURE;
     if (arr[1] == NULL)
         return SUCCESS;
-    str = malloc(sizeof(char) * (len1 + len2 + 2));
-    if (str == NULL)
-        return FAILURE;
-    concatenate_str(arr, str, len1, len2);
-    adding_elem_with_setenv(environment, str);
+    adding_elem_with_setenv(environment, arr);
     return SUCCESS;
 }
