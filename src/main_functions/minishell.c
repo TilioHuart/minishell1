@@ -25,12 +25,12 @@ int call_function(char **arr, builtin_t *builtin, environment_t *environment)
     display_prompt();
     arr = recup_function();
     if (arr == NULL || arr[0] == NULL) {
-        washing_machine(builtin);
+        washing_machine(builtin, environment);
         return -1;
     }
     if (my_strcmp(arr[0], "exit") == 0) {
         washing_array(arr);
-        washing_machine(builtin);
+        washing_machine(builtin, environment);
         return 1;
     }
     if (loop_builtin(builtin, arr, environment) == 0)

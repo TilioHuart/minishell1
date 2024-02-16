@@ -60,6 +60,15 @@ static char *assign_value(char const *part_of_env, char *key, size_t *i)
 }
 
 static
+void assign_values_to_list(environment_t *environment,
+    char *const *arr, environment_t *tmp)
+{
+    environment->next = tmp;
+    tmp->key = my_strdup(arr[1]);
+    tmp->value = my_strdup(arr[2]);
+}
+
+static
 int adding_elem_with_setenv(environment_t *environment, char **arr)
 {
     environment_t *head = environment;
@@ -78,9 +87,7 @@ int adding_elem_with_setenv(environment_t *environment, char **arr)
         }
         environment = environment->next;
     }
-    environment->next = tmp;
-    tmp->key = my_strdup(arr[1]);
-    tmp->value = my_strdup(arr[2]);
+    assign_values_to_list(environment, arr, tmp);
     tmp->next = tmp2;
     environment = head;
     return SUCCESS;

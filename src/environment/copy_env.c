@@ -79,6 +79,13 @@ static environment_t *create_list_env(char *part_of_env)
     return environment;
 }
 
+static void adding_values_to_list(environment_t *tmp, char *key, char *value)
+{
+    tmp->key = key;
+    tmp->value = value;
+    tmp->next = NULL;
+}
+
 static int adding_elem_to_list(environment_t *environment, char *part_of_env)
 {
     environment_t *head = environment;
@@ -97,9 +104,7 @@ static int adding_elem_to_list(environment_t *environment, char *part_of_env)
     value = malloc(sizeof(char) * (strlen_value(part_of_env) + 1));
     i += 1;
     value = assign_value(part_of_env, value, &i);
-    tmp->key = key;
-    tmp->value = value;
-    tmp->next = NULL;
+    adding_values_to_list(tmp, key, value);
     environment = head;
     return SUCCESS;
 }
