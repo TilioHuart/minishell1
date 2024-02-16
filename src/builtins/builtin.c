@@ -35,7 +35,7 @@ int find_builtin(builtin_t *builtin, char **arr, environment_t *environment)
     int count = 0;
 
     for (size_t i = 0; builtin[i].function != NULL; i += 1) {
-        if (strcmp(builtin[i].function, arr[0]) == 0) {
+        if (my_strcmp(builtin[i].function, arr[0]) == 0) {
             builtin[i].pftc(arr, environment);
             count = 1;
         }

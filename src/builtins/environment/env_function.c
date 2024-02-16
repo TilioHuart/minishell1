@@ -13,7 +13,9 @@
 int env_function(UNUSED char **arr, environment_t *environment)
 {
     while (environment != NULL) {
-        my_putstr(environment->part_of_env);
+        my_putstr(environment->key);
+        write(1, "=", 1);
+        my_putstr(environment->value);
         write(1, "\n", 1);
         environment = environment->next;
     }
