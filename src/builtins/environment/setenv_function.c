@@ -16,6 +16,12 @@ static
 void assign_values_to_list(environment_t *environment,
     char *const *arr, environment_t *tmp)
 {
+    if (environment->next != NULL) {
+        if (environment->next->key != NULL)
+            free(environment->next->key);
+        if (environment->next->value != NULL)
+            free(environment->next->value);
+    }
     environment->next = tmp;
     tmp->key = my_strdup(arr[1]);
     tmp->value = my_strdup(arr[2]);

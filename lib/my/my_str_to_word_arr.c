@@ -45,12 +45,10 @@ static void alloc_str_in_arr(char **arr, size_t const *len, size_t const *i)
     }
 }
 
-static char **create_arr(char const *str)
+static char **alloc_elem_in_arr(char const *str)
 {
     char **arr = NULL;
-    size_t count = 0;
-    size_t len = 0;
-    size_t y = 0;
+    int count = 0;
 
     if (str == NULL)
         return NULL;
@@ -58,11 +56,26 @@ static char **create_arr(char const *str)
         if (is_not_separator(str[i]) == 1)
             count += 1;
     arr = malloc(sizeof(char *) * (count + 2));
+    if (arr == NULL)
+        return NULL;
     arr[count + 1] = NULL;
+    return arr;
+}
+
+static char **create_arr(char const *str)
+{
+    char **arr = NULL;
+    size_t len = 0;
+    size_t y = 0;
+
+    if (str == NULL)
+        return NULL;
+    arr = alloc_elem_in_arr(str);
     for (size_t i = 0; str[i] != '\0'; i++) {
         if (is_not_separator(str[i]) == 0 && is_not_separator(str[i + 1]) == 0)
             len += 1;
-        if (is_not_separator(str[i]) == 0 && is_not_separator(str[i + 1]) == 1) {
+        if (is_not_separator(str[i]) == 0 &&
+            is_not_separator(str[i + 1]) == 1) {
             len += 1;
             arr[y] = malloc(sizeof(char) * (len + 1));
             arr[y][len] = '\0';
