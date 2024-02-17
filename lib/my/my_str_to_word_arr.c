@@ -59,12 +59,18 @@ static char **create_arr(char const *str)
             count += 1;
     arr = malloc(sizeof(char *) * (count + 2));
     arr[count + 1] = NULL;
-    for (size_t i = 0; i < (count + 1); i++) {
-        for (; str[y] != ' ' && str[y] != '\0'; y++)
-            find_len(str, &len, &y);
-        y += 1;
-        alloc_str_in_arr(arr, &len, &i);
-        len = 0;
+    for (size_t i = 0; str[i] != '\0'; i++) {
+        if (is_not_separator(str[i]) == 0 && is_not_separator(str[i + 1]) == 0)
+            len += 1;
+        if (is_not_separator(str[i]) == 0 && is_not_separator(str[i + 1]) == 1) {
+            len += 1;
+            arr[y] = malloc(sizeof(char) * (len + 1));
+            printf("len = %ld\n", len);
+            printf("arr y = %ld\n", y);
+            arr[y][len] = '\0';
+            y += 1;
+            len = 0;
+        }
     }
     return arr;
 }
@@ -84,6 +90,9 @@ static ssize_t assign_str_to_arr(char **arr, char const *str)
         }
         if (is_not_separator(str[i]) == 0 &&
             is_not_separator(str[i + 1]) == 1) {
+            printf("a = %ld\n", a);
+            printf("y = %ld\n", y);
+            printf("i = %ld\n", i);
             arr[a][y] = str[i];
             a += 1;
             y = 0;
