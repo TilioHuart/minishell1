@@ -65,8 +65,6 @@ static char **create_arr(char const *str)
         if (is_not_separator(str[i]) == 0 && is_not_separator(str[i + 1]) == 1) {
             len += 1;
             arr[y] = malloc(sizeof(char) * (len + 1));
-            printf("len = %ld\n", len);
-            printf("arr y = %ld\n", y);
             arr[y][len] = '\0';
             y += 1;
             len = 0;
@@ -90,9 +88,6 @@ static ssize_t assign_str_to_arr(char **arr, char const *str)
         }
         if (is_not_separator(str[i]) == 0 &&
             is_not_separator(str[i + 1]) == 1) {
-            printf("a = %ld\n", a);
-            printf("y = %ld\n", y);
-            printf("i = %ld\n", i);
             arr[a][y] = str[i];
             a += 1;
             y = 0;
