@@ -74,9 +74,6 @@ int adding_elem_with_setenv(environment_t *environment, char **arr)
     environment_t *head = environment;
     environment_t *tmp = malloc(sizeof(environment_t));
     environment_t *tmp2 = NULL;
-    char *key = NULL;
-    char *value = NULL;
-    size_t i = 0;
 
     if (tmp == NULL || arr == NULL)
         return FAILURE;
@@ -95,10 +92,6 @@ int adding_elem_with_setenv(environment_t *environment, char **arr)
 
 int setenv_function(char **arr, UNUSED environment_t *environment)
 {
-    char *str = NULL;
-    size_t len1 = 0;
-    size_t len2 = 0;
-
     if (arr == NULL)
         return FAILURE;
     if (arr[1] == NULL)

@@ -3,5 +3,5 @@ mysh
 *.a
 coding-style-reports.log
 .idea
-.cache/
+.cache
 compile_commands.json
