@@ -9,7 +9,7 @@
 #include "environment.h"
 #include <unistd.h>
 
-int cd_function(char **arr, UNUSED environment_t *environment)
+int cd_function(UNUSED char **arr, UNUSED environment_t *environment)
 {
     write(1, "cd\n", 3);
     return SUCCESS;
