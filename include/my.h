@@ -14,5 +14,6 @@ char **my_str_to_word_array(char const *str);
 int my_putnbr(int n);
 char *my_strdup(char const *src);
 int my_strcmp(char const *s1, char const *s2);
+char *my_strcat(char *dest, char const *src);
 
 #endif

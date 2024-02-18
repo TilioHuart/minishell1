@@ -11,6 +11,7 @@ SRC	+=	my_str_to_word_arr.c
 SRC	+=	my_putnbr.c
 SRC	+=	my_strdup.c
 SRC	+=	my_strcmp.c
+SRC	+=	my_strcat.c
 
 CPPFLAGS	=	-I.
 
