@@ -15,5 +15,6 @@ typedef struct environment {
 } environment_t;
 
 environment_t *copy_env(char **env);
+char **transform_env_to_arr(environment_t *environment);
 
 #endif

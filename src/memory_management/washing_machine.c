@@ -29,7 +29,7 @@ int washing_machine(builtin_t *builtin, environment_t *environment)
         free(builtin[i].function);
     free(builtin);
     if (environment != NULL)
-        while (environment!= NULL) {
+        while (environment != NULL) {
             tmp = environment->next;
             free(environment->key);
             free(environment->value);

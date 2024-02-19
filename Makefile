@@ -18,6 +18,7 @@ SRC	+=	src/memory_management/washing_machine.c
 SRC	+=	src/environment/copy_env.c
 SRC	+=	src/path_functions/use_functions.c
 SRC	+=	src/path_functions/which_function.c
+SRC	+=	src/environment/transform_env_to_arr.c
 
 OBJ = $(SRC:.c=.o)
 
