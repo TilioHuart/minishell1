@@ -21,6 +21,7 @@ void assign_values_to_list(environment_t *environment,
             free(environment->next->key);
         if (environment->next->value != NULL)
             free(environment->next->value);
+        free(environment->next);
     }
     environment->next = tmp;
     tmp->key = my_strdup(arr[1]);

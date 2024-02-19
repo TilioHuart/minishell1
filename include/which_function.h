@@ -9,6 +9,6 @@
     #define WHICH_FUNCTION_H_
     #include "environment.h"
 
-int which_function(char **arr, environment_t *environment);
+char *which_function(char **arr, environment_t *environment);
 
 #endif
