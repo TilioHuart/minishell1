@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include "my_macros.h"
 #include "display_functions.h"
 #include "my.h"
@@ -19,11 +20,26 @@
 #include "environment.h"
 #include "use_functions.h"
 
+int if_tty(void)
+{
+    struct stat tty = { 0 };
+
+    fstat(0, &tty);
+    if (S_ISFIFO(tty.st_mode))
+        return SUCCESS;
+    return FAILURE;
+}
+
 static
 int call_function(char **arr, builtin_t *builtin, environment_t *environment)
 {
-    display_prompt();
-    arr = recup_function();
+    int stop = 0;
+
+    if (if_tty() == FAILURE)
+        display_prompt();
+    arr = recup_function(&stop);
+    if (stop == 1)
+        return 1;
     if (arr == NULL || arr[0] == NULL) {
         washing_machine(builtin, environment);
         return -1;

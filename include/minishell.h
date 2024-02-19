@@ -17,5 +17,6 @@ typedef struct builtin {
 } builtin_t;
 
 int loop_builtin(builtin_t *builtin, char **arr, environment_t *environment);
+int if_tty(void);
 
 #endif

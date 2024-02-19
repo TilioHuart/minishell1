@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include "my.h"
 #include "my_macros.h"
+#include "minishell.h"
 
 static int remove_linebreak(char *str)
 {
@@ -21,14 +22,17 @@ static int remove_linebreak(char *str)
     return SUCCESS;
 }
 
-char **recup_function(void)
+char **recup_function(int *stop)
 {
+    char **arr = NULL;
     char *buff = NULL;
     size_t len = 0;
-    char **arr = NULL;
 
     if (getline(&buff, &len, stdin) == -1) {
-        perror("getline");
+        if (if_tty() == SUCCESS) {
+            *stop = 1;
+            return NULL;
+        }
         return NULL;
     }
     remove_linebreak(buff);

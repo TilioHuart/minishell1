@@ -8,6 +8,6 @@
 #ifndef RECUP_FUNCTION_H_
     #define RECUP_FUNCTION_H_
 
-char **recup_function(void);
+char **recup_function(int *stop);
 
 #endif
