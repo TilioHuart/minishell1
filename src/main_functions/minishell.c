@@ -31,13 +31,13 @@ int if_tty(void)
 }
 
 static
-int call_function(char **arr, builtin_t *builtin, environment_t *environment)
+int call_function(char **arr, builtin_t *builtin, environment_t *environment, loop_t *main_loop_struct)
 {
     int stop = 0;
 
     if (if_tty() == FAILURE)
         display_prompt();
-    arr = recup_function(&stop);
+    arr = recup_function(&stop, main_loop_struct);
     if (stop == 1)
         return 1;
     if (arr == NULL || arr[0] == NULL) {
@@ -47,6 +47,7 @@ int call_function(char **arr, builtin_t *builtin, environment_t *environment)
     if (my_strcmp(arr[0], "exit") == 0) {
         washing_array(arr);
         washing_machine(builtin, environment);
+        main_loop_struct->stop = 1;
         return 1;
     }
     if (loop_builtin(builtin, arr, environment) == 0)
@@ -55,19 +56,17 @@ int call_function(char **arr, builtin_t *builtin, environment_t *environment)
     return SUCCESS;
 }
 
-static int main_loop(environment_t *environment)
+static int main_loop(environment_t *environment, loop_t *main_loop_struct)
 {
     char **arr = NULL;
     builtin_t *builtin = malloc(sizeof(builtin_t) * 5);
     int loop = 0;
 
     init_builtin(builtin);
-    while (1) {
-        loop = call_function(arr, builtin, environment);
+    while (main_loop_struct->stop == 0) {
+        loop = call_function(arr, builtin, environment, main_loop_struct);
         if (loop == -1)
             return -1;
-        if (loop == 1)
-            break;
     }
     return SUCCESS;
 }
@@ -75,9 +74,11 @@ static int main_loop(environment_t *environment)
 int minishell(char **env)
 {
     environment_t *environment = NULL;
+    loop_t *main_loop_struct = malloc(sizeof(loop_t));
 
+    main_loop_struct->stop = 0;
     environment = copy_env(env);
-    if (main_loop(environment) == -1)
+    if (main_loop(environment, main_loop_struct) == -1)
         return FAILURE_EPITECH;
     return SUCCESS;
 }

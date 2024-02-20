@@ -22,7 +22,7 @@ static int remove_linebreak(char *str)
     return SUCCESS;
 }
 
-char **recup_function(int *stop)
+char **recup_function(int *stop, loop_t *main_loop_struct)
 {
     char **arr = NULL;
     char *buff = NULL;
@@ -31,6 +31,7 @@ char **recup_function(int *stop)
     if (getline(&buff, &len, stdin) == -1) {
         if (if_tty() == SUCCESS) {
             *stop = 1;
+            main_loop_struct->stop = 1;
             return NULL;
         }
         return NULL;
