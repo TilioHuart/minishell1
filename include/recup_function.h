@@ -10,6 +10,6 @@
 
 #include "minishell.h"
 
-char **recup_function(int *stop, loop_t *main_loop_struct);
+char **recup_function(loop_t *main_loop_struct);
 
 #endif

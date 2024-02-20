@@ -33,13 +33,9 @@ int if_tty(void)
 static
 int call_function(char **arr, builtin_t *builtin, environment_t *environment, loop_t *main_loop_struct)
 {
-    int stop = 0;
-
     if (if_tty() == FAILURE)
         display_prompt();
-    arr = recup_function(&stop, main_loop_struct);
-    if (stop == 1)
-        return 1;
+    arr = recup_function(main_loop_struct);
     if (arr == NULL || arr[0] == NULL) {
         washing_machine(builtin, environment);
         return -1;
