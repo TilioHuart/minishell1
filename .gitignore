@@ -5,3 +5,4 @@ coding-style-reports.log
 .idea
 .cache
 compile_commands.json
+tests/
