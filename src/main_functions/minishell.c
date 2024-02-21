@@ -47,7 +47,7 @@ int call_function(char **arr, builtin_t *builtin,
         return SUCCESS;
     }
     if (loop_builtin(builtin, arr, environment, main_loop_struct) == 0)
-        use_function(arr, environment);
+        use_function(arr, environment, main_loop_struct);
     washing_array(&arr);
     return SUCCESS;
 }
@@ -76,11 +76,15 @@ int minishell(char **env)
 {
     environment_t *environment = NULL;
     loop_t *main_loop_struct = malloc(sizeof(loop_t));
+    int value = 0;
 
     main_loop_struct->stop = 0;
+    main_loop_struct->return_value = 0;
     environment = copy_env(env);
     if (main_loop(environment, main_loop_struct) == -1)
         return FAILURE_EPITECH;
+    if (main_loop_struct->return_value != 0)
+        value = main_loop_struct->return_value;
     free(main_loop_struct);
-    return SUCCESS;
+    return value;
 }

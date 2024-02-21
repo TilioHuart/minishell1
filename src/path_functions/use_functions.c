@@ -6,6 +6,7 @@
 */
 
 #include "environment.h"
+#include "minishell.h"
 #include "my.h"
 #include "my_macros.h"
 #include "which_function.h"
@@ -33,16 +34,23 @@ static char *check_file_at_root(char **arr)
     return NULL;
 }
 
-static int file_at_root(char **path, char **arr)
+static int file_at_root(char **path, char **arr, loop_t *loop)
 {
+    if (arr == NULL || arr[0] == NULL)
+        return FAILURE;
     if (*path == NULL)
         *path = check_file_at_root(arr);
-    if (*path == NULL)
+    if (*path == NULL) {
+        write(2, arr[0], my_strlen(arr[0]));
+        write(2, ": Command not found.\n",
+            my_strlen(": Command not found.\n"));
+        loop->return_value = 1;
         return FAILURE;
+    }
     return SUCCESS;
 }
 
-int use_function(char **arr, environment_t *environment)
+int use_function(char **arr, environment_t *environment, loop_t *loop)
 {
     char *path = NULL;
     char **env = NULL;
@@ -52,7 +60,7 @@ int use_function(char **arr, environment_t *environment)
     if (arr == NULL || arr[0] == NULL)
         return FAILURE;
     path = which_function(arr, environment);
-    if (file_at_root(&path, arr) == FAILURE)
+    if (file_at_root(&path, arr, loop) == FAILURE)
         return FAILURE;
     env = transform_env_to_arr(environment);
     pid = fork();

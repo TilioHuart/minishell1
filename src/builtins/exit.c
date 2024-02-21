@@ -30,5 +30,6 @@ int exit_function(UNUSED char **arr,
 {
     free_environment(&environment);
     loop->stop = 1;
+    loop->return_value = 0;
     return SUCCESS;
 }
