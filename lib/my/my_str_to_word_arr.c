@@ -12,7 +12,7 @@
 
 static size_t is_not_separator(char c)
 {
-    if (c != ' ' && c != '\0') {
+    if (c != ' ' && c != '\0' && c != '\t') {
         return 0;
     } else {
         return 1;
