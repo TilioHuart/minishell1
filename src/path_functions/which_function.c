@@ -68,6 +68,7 @@ static char *concatenate_path(char **arr, char **path_arr)
         path = retrieve_binary(arr, path_arr, &i);
         if (check_file(path) == 1)
             return path;
+        free(path);
     }
     return NULL;
 }
@@ -88,7 +89,11 @@ static char *loop_in_path(char **arr, environment_t *environment)
     path_arr = my_str_to_word_array(path);
     file = concatenate_path(arr, path_arr);
     free(path);
+    if (path_arr != NULL) {
+        for (size_t i = 0; path_arr[i] != NULL; i += 1)
+            free(path_arr[i]);
     free(path_arr);
+    }
     return file;
 }
 

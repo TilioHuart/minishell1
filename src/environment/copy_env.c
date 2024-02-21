@@ -7,7 +7,6 @@
 
 #include "my_macros.h"
 #include "environment.h"
-#include "my.h"
 #include <stdlib.h>
 #include <stdio.h>
 

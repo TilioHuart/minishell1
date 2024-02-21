@@ -31,13 +31,14 @@ int if_tty(void)
 }
 
 static
-int call_function(char **arr, builtin_t *builtin, environment_t *environment, loop_t *main_loop_struct)
+int call_function(char **arr, builtin_t *builtin,
+    environment_t *environment, loop_t *main_loop_struct)
 {
     if (if_tty() == FAILURE)
         display_prompt();
     arr = recup_function(main_loop_struct);
     if (arr == NULL) {
-        washing_machine(builtin, environment);
+        washing_machine(builtin, &environment);
         return -1;
     }
     if (arr[0] == NULL) {
@@ -45,7 +46,7 @@ int call_function(char **arr, builtin_t *builtin, environment_t *environment, lo
     }
     if (my_strcmp(arr[0], "exit") == 0) {
         washing_array(&arr);
-        washing_machine(builtin, environment);
+        washing_machine(builtin, &environment);
         main_loop_struct->stop = 1;
         return 1;
     }

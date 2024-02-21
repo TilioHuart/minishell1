@@ -19,9 +19,10 @@ void washing_array(char ***arr)
         free((*arr)[i]);
         (*arr)[i] = NULL;
     }
+    free(*arr);
 }
 
-int washing_machine(builtin_t *builtin, environment_t *environment)
+int washing_machine(builtin_t *builtin, environment_t **environment)
 {
     environment_t *tmp = NULL;
 
@@ -30,13 +31,13 @@ int washing_machine(builtin_t *builtin, environment_t *environment)
     for (int i = 0; builtin[i].function != NULL; i += 1)
         free(builtin[i].function);
     free(builtin);
-    if (environment != NULL)
-        while (environment != NULL) {
-            tmp = environment->next;
-            free(environment->key);
-            free(environment->value);
-            free(environment);
-            environment = tmp;
+    if (*environment != NULL)
+        while (*environment != NULL) {
+            tmp = (*environment)->next;
+            free((*environment)->key);
+            free((*environment)->value);
+            free(*environment);
+            (*environment) = tmp;
         }
     return SUCCESS;
 }

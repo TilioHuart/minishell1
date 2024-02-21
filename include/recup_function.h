@@ -8,7 +8,7 @@
 #ifndef RECUP_FUNCTION_H_
     #define RECUP_FUNCTION_H_
 
-#include "minishell.h"
+    #include "minishell.h"
 
 char **recup_function(loop_t *main_loop_struct);
 

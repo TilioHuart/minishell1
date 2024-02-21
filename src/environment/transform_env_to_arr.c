@@ -44,20 +44,23 @@ static char *concatenate_str(environment_t *environment)
     return str;
 }
 
+static void count_size_of_env(environment_t *environment, size_t *count)
+{
+    while (environment->next != NULL) {
+        *count += 1;
+        environment = environment->next;
+    }
+}
+
 char **transform_env_to_arr(environment_t *environment)
 {
     char **env = NULL;
-    environment_t *head = environment;
     size_t count = 0;
     size_t i = 0;
 
     if (environment == NULL)
         return NULL;
-    while (environment->next != NULL) {
-        count += 1;
-        environment = environment->next;
-    }
-    environment = head;
+    count_size_of_env(environment, &count);
     env = malloc(sizeof(char *) * (count + 2));
     for (size_t i = 0; i <= count + 1; i += 1)
         env[i] = NULL;

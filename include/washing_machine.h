@@ -10,6 +10,6 @@
     #include "minishell.h"
 
 void washing_array(char ***arr);
-int washing_machine(builtin_t *builtin, environment_t *environment);
+int washing_machine(builtin_t *builtin, environment_t **environment);
 
 #endif

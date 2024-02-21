@@ -7,12 +7,19 @@
 
 #include "environment.h"
 #include "my_macros.h"
-#include "my.h"
 #include "which_function.h"
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+static void free_env(char ***env)
+{
+    if (*env != NULL)
+        for (size_t i = 0; (*env)[i] != NULL; i += 1)
+            free((*env)[i]);
+    free(*env);
+}
 
 int use_function(char **arr, environment_t *environment)
 {
@@ -34,5 +41,6 @@ int use_function(char **arr, environment_t *environment)
         waitpid(-1, &wstatus, 0);
     }
     free(path);
+    free_env(&env);
     return SUCCESS;
 }
