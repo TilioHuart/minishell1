@@ -11,16 +11,17 @@
     #include "environment.h"
 int minishell(char **env);
 
-typedef struct builtin {
-    char *function;
-    int (*pftc) (char **arr, environment_t *environment);
-} builtin_t;
-
 typedef struct loop {
     int stop;
 } loop_t;
 
-int loop_builtin(builtin_t *builtin, char **arr, environment_t *environment);
+typedef struct builtin {
+    char *function;
+    int (*pftc) (char **arr, environment_t *environment, loop_t *loop);
+} builtin_t;
+
+int loop_builtin(builtin_t *builtin, char **arr,
+    environment_t *environment, loop_t *loop);
 int if_tty(void);
 
 #endif

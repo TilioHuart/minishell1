@@ -12,7 +12,6 @@
 #include <sys/stat.h>
 #include "my_macros.h"
 #include "display_functions.h"
-#include "my.h"
 #include "recup_function.h"
 #include "minishell.h"
 #include "builtin.h"
@@ -45,13 +44,7 @@ int call_function(char **arr, builtin_t *builtin,
         washing_array(&arr);
         return SUCCESS;
     }
-    if (my_strcmp(arr[0], "exit") == 0) {
-        washing_array(&arr);
-        washing_machine(builtin, &environment);
-        main_loop_struct->stop = 1;
-        return 1;
-    }
-    if (loop_builtin(builtin, arr, environment) == 0)
+    if (loop_builtin(builtin, arr, environment, main_loop_struct) == 0)
         use_function(arr, environment);
     washing_array(&arr);
     return SUCCESS;
@@ -60,7 +53,7 @@ int call_function(char **arr, builtin_t *builtin,
 static int main_loop(environment_t *environment, loop_t *main_loop_struct)
 {
     char **arr = NULL;
-    builtin_t *builtin = malloc(sizeof(builtin_t) * 5);
+    builtin_t *builtin = malloc(sizeof(builtin_t) * 6);
     int loop = 0;
 
     init_builtin(builtin);
@@ -69,6 +62,11 @@ static int main_loop(environment_t *environment, loop_t *main_loop_struct)
         if (loop == -1)
             return -1;
     }
+    if (builtin == NULL)
+        return SUCCESS;
+    for (int i = 0; builtin[i].function != NULL; i += 1)
+        free(builtin[i].function);
+    free(builtin);
     return SUCCESS;
 }
 
