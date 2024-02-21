@@ -36,19 +36,22 @@ int call_function(char **arr, builtin_t *builtin, environment_t *environment, lo
     if (if_tty() == FAILURE)
         display_prompt();
     arr = recup_function(main_loop_struct);
-    if (arr == NULL || arr[0] == NULL) {
+    if (arr == NULL) {
         washing_machine(builtin, environment);
         return -1;
     }
+    if (arr[0] == NULL) {
+        return SUCCESS;
+    }
     if (my_strcmp(arr[0], "exit") == 0) {
-        washing_array(arr);
+        washing_array(&arr);
         washing_machine(builtin, environment);
         main_loop_struct->stop = 1;
         return 1;
     }
     if (loop_builtin(builtin, arr, environment) == 0)
         use_function(arr, environment);
-    washing_array(arr);
+    washing_array(&arr);
     return SUCCESS;
 }
 
@@ -76,5 +79,6 @@ int minishell(char **env)
     environment = copy_env(env);
     if (main_loop(environment, main_loop_struct) == -1)
         return FAILURE_EPITECH;
+    free(main_loop_struct);
     return SUCCESS;
 }

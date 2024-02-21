@@ -9,14 +9,16 @@
 #include "my_macros.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
-void washing_array(char **arr)
+void washing_array(char ***arr)
 {
-    if (arr == NULL)
+    if (arr == NULL || *arr == NULL)
         return;
-    for (size_t i = 0; arr[i] != NULL; i += 1)
-        free(arr[i]);
-    free(arr);
+    for (size_t i = 0; (*arr)[i] != NULL; i += 1) {
+        free((*arr)[i]);
+        (*arr)[i] = NULL;
+    }
 }
 
 int washing_machine(builtin_t *builtin, environment_t *environment)

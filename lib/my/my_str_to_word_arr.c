@@ -10,38 +10,12 @@
 #include <unistd.h>
 #include <stdio.h>
 
-static ssize_t my_strlen(char const *str)
-{
-    int i = 0;
-
-    if (str == NULL)
-        return -1;
-    for (; str[i] != '\0'; i += 1);
-    return i;
-}
-
 static size_t is_not_separator(char c)
 {
     if (c != ' ' && c != '\0') {
         return 0;
     } else {
         return 1;
-    }
-}
-
-static void find_len(char const *str, size_t *len, size_t *y)
-{
-    if (is_not_separator(str[*y]) == 0)
-        *len += 1;
-}
-
-static void alloc_str_in_arr(char **arr, size_t const *len, size_t const *i)
-{
-    if (*len > 0) {
-        arr[*i] = malloc(sizeof(char) * (*len + 1));
-        if (arr[*i] == NULL)
-            return;
-        arr[*i][*len] = '\0';
     }
 }
 
@@ -58,7 +32,8 @@ static char **alloc_elem_in_arr(char const *str)
     arr = malloc(sizeof(char *) * (count + 2));
     if (arr == NULL)
         return NULL;
-    arr[count + 1] = NULL;
+    for (int i = 0; i <= count + 1; i += 1)
+        arr[i] = NULL;
     return arr;
 }
 

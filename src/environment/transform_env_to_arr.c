@@ -59,7 +59,8 @@ char **transform_env_to_arr(environment_t *environment)
     }
     environment = head;
     env = malloc(sizeof(char *) * (count + 2));
-    env[i + 1] = NULL;
+    for (size_t i = 0; i <= count + 1; i += 1)
+        env[i] = NULL;
     while (environment != NULL) {
         env[i] = concatenate_str(environment);
         i += 1;
