@@ -42,6 +42,7 @@ int call_function(char **arr, builtin_t *builtin,
         return -1;
     }
     if (arr[0] == NULL) {
+        washing_array(&arr);
         return SUCCESS;
     }
     if (my_strcmp(arr[0], "exit") == 0) {

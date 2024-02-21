@@ -31,9 +31,9 @@ int use_function(char **arr, environment_t *environment)
     if (arr == NULL || arr[0] == NULL)
         return FAILURE;
     path = which_function(arr, environment);
-    env = transform_env_to_arr(environment);
     if (path == NULL)
         return FAILURE;
+    env = transform_env_to_arr(environment);
     pid = fork();
     if (pid == 0) {
         execve(path, arr, env);
