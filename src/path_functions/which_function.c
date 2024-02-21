@@ -79,7 +79,7 @@ static char *loop_in_path(char **arr, environment_t *environment)
     char **path_arr = NULL;
     char *file = NULL;
 
-    if (environment == NULL)
+    if (environment == NULL || environment->value == NULL)
         return NULL;
     path = my_strdup(environment->value);
     for (size_t i = 0; path[i] != '\0'; i++) {
