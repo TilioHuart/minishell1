@@ -36,6 +36,8 @@ int call_function(char **arr, builtin_t *builtin,
     if (if_tty() == FAILURE)
         display_prompt();
     arr = recup_function(main_loop_struct);
+    if (main_loop_struct->stop == 1)
+        return SUCCESS;
     if (arr == NULL) {
         washing_machine(builtin, &environment);
         return -1;
