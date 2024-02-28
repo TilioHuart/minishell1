@@ -29,6 +29,21 @@ static int cd_home(environment_t *environment, loop_t *loop)
     return SUCCESS;
 }
 
+static int case_of_to_many_args(char **arr, loop_t *loop)
+{
+    if (arr == NULL || loop == NULL)
+        return FAILURE;
+    for (int i = 0; arr[i] != NULL; i += 1) {
+        if (i > 1) {
+            write(1, arr[0], my_strlen(arr[0]));
+            my_putstr(": Too many arguments.\n");
+            loop->return_value = 1;
+            return 1;
+        }
+    }
+    return SUCCESS;
+}
+
 int cd_function(UNUSED char **arr,
     UNUSED environment_t *environment, loop_t *loop)
 {
@@ -38,14 +53,12 @@ int cd_function(UNUSED char **arr,
         cd_home(environment, loop);
         return SUCCESS;
     }
-    for (int i = 0; arr[i] != NULL; i += 1) {
-        if (i > 1) {
-            write(1, arr[0], my_strlen(arr[0]));
-            my_putstr(": Too many arguments.\n");
-            loop->return_value = 1;
-            return SUCCESS;
-        }
+    if (my_strcmp(arr[1], "~") == 0) {
+        cd_home(environment, loop);
+        return SUCCESS;
     }
+    if (case_of_to_many_args(arr, loop) == 1)
+        return SUCCESS;
     if (chdir(arr[1]) == -1) {
         write(1, arr[1], my_strlen(arr[1]));
         my_putstr(": No such file or directory.\n");
