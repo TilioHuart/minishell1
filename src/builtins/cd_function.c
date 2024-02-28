@@ -29,7 +29,8 @@ static int cd_home(environment_t *environment, loop_t *loop)
     return SUCCESS;
 }
 
-int cd_function(UNUSED char **arr, UNUSED environment_t *environment, loop_t *loop)
+int cd_function(UNUSED char **arr,
+    UNUSED environment_t *environment, loop_t *loop)
 {
     if (arr == NULL)
         return FAILURE;
