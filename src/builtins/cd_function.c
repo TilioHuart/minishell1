@@ -78,7 +78,8 @@ static int previous_cd(char **arr, loop_t *loop)
     tmp = getcwd(tmp, 256);
     if (chdir(loop->old_pwd) == -1) {
         write(2, arr[1], my_strlen(arr[1]));
-        write(2, ": No such file or directory.\n", my_strlen(": No such file or directory.\n"));
+        write(2, ": No such file or directory.\n",
+            my_strlen(": No such file or directory.\n"));
         loop->return_value = 1;
         return SUCCESS;
     }
