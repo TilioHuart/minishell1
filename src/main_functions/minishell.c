@@ -87,6 +87,10 @@ int minishell(char **env)
         return FAILURE_EPITECH;
     if (main_loop_struct->return_value != 0)
         value = main_loop_struct->return_value;
+    if (main_loop_struct != NULL) {
+        if (main_loop_struct->old_pwd != NULL)
+            free(main_loop_struct->old_pwd);
     free(main_loop_struct);
+    }
     return value;
 }
