@@ -5,6 +5,7 @@
 ** setenv_function.c
 */
 
+#include "minishell.h"
 #include "my_macros.h"
 #include "environment.h"
 #include "my.h"
@@ -50,12 +51,35 @@ int adding_elem_with_setenv(environment_t *environment, char **arr)
     return SUCCESS;
 }
 
-int setenv_function(char **arr, UNUSED environment_t *environment)
+static int is_alphanum(char *str)
+{
+    if (str == NULL)
+        return FAILURE;
+    for (size_t i = 0; str[i] != '\0'; i += 1) {
+        if ((str[i] >= 'a' && str[i] <= 'z') ||
+            (str[i] >= 'A' && str[i] <= 'Z') ||
+            (str[i] >= '0' && str[i] <= '9'))
+                continue;
+        else
+            return FAILURE;
+    }
+    return SUCCESS;
+}
+
+int setenv_function(char **arr, UNUSED environment_t *environment,
+    loop_t *loop)
 {
     if (arr == NULL)
         return FAILURE;
     if (arr[1] == NULL)
         return SUCCESS;
+    if (is_alphanum(arr[1]) == FAILURE) {
+        write(2, "setenv", my_strlen("setenv"));
+        write(1, ": Variable name must constain alphanumeric characters.\n",
+            (my_strlen(": Variable name must constain") +
+            my_strlen(" alphanumeric characters.\n")));
+        loop->return_value = 1;
+    }
     adding_elem_with_setenv(environment, arr);
     return SUCCESS;
 }
