@@ -14,6 +14,7 @@ int minishell(char **env);
 typedef struct loop {
     int stop;
     int return_value;
+    char *old_pwd;
 } loop_t;
 
 typedef struct builtin {

@@ -80,6 +80,8 @@ int minishell(char **env)
 
     main_loop_struct->stop = 0;
     main_loop_struct->return_value = 0;
+    main_loop_struct->old_pwd = NULL;
+    main_loop_struct->old_pwd = getcwd(main_loop_struct->old_pwd, 256);
     environment = copy_env(env);
     if (main_loop(environment, main_loop_struct) == -1)
         return FAILURE_EPITECH;
