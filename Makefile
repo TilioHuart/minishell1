@@ -25,7 +25,7 @@ OBJ = $(SRC:.c=.o)
 
 NAME = mysh
 
-CC = gcc -g
+CC = gcc
 
 CFLAGS	=	-I include
 CFLAGS	+=	-W -Wall -Wextra -Wpedantic
